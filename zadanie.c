@@ -47,3 +47,32 @@ int main() {
     return 0;
 }
 //zadanie 5
+#include <stdio.h>
+
+int main() {
+    char ch;
+    int code;
+
+    printf("Podaj znak ASCII (char) lub kod ASCII (int): ");
+    
+    
+    if (scanf(" %c", &ch) == 1) {
+        if ((ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z')) {
+            printf("'%c' jest literą alfabetu.\n", ch);
+        } else {
+            printf("'%c' nie jest literą alfabetu.\n", ch);
+        }
+    }
+
+    
+    printf("Podaj kod ASCII (int): ");
+    if (scanf("%d", &code) == 1) {
+        if ((code >= 65 && code <= 90) || (code >= 97 && code <= 122)) {
+            printf("Kod %d odpowiada literze alfabetu.\n", code);
+        } else {
+            printf("Kod %d nie odpowiada literze alfabetu.\n", code);
+        }
+    }
+
+    return 0;
+}
