@@ -1,0 +1,143 @@
+//zadanie 1
+
+#include <stdio.h>
+
+int globalna = 10; // Zmienna globalna
+
+void wypisz_adresy(int a, int b) {
+    printf("Adres a: %p\n", (void*)&a);
+    printf("Adres b: %p\n", (void*)&b);
+}
+
+int main() {
+    int lokalna = globalna; // Zmienna lokalna
+    printf("Adres globalnej zmiennej: %p\n", (void*)&globalna);
+    printf("Adres lokalnej zmiennej: %p\n", (void*)&lokalna);
+
+    wypisz_adresy(globalna, lokalna);
+
+    return 0;
+}
+//zadanie 2
+#include <stdio.h>
+
+int main() {
+    int tablica[10];
+    printf("Podaj 10 elementów tablicy:\n");
+
+    for (int i = 0; i < 10; i++) {
+        scanf("%d", (tablica + i)); // Wczytywanie przez wskaźnik
+    }
+
+    printf("Elementy tablicy:\n");
+    for (int i = 0; i < 10; i++) {
+        printf("%d ", *(tablica + i)); // Wyświetlanie przez wskaźnik
+    }
+    printf("\n");
+
+    return 0;
+}
+//zadanie 3
+#include <stdio.h>
+
+void zamien(int* a, int* b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+int main() {
+    int x = 5, y = 10;
+    printf("Przed zamianą: x = %d, y = %d\n", x, y);
+
+    zamien(&x, &y);
+
+    printf("Po zamianie: x = %d, y = %d\n", x, y);
+
+    return 0;
+}
+//zadanie 4
+#include <stdio.h>
+
+int znajdz_i_zamien_max(int* tab, int rozmiar) {
+    int max_index = 0;
+
+    for (int i = 1; i < rozmiar; i++) {
+        if (tab[i] > tab[max_index]) {
+            max_index = i;
+        }
+    }
+
+    int max_wartosc = tab[max_index];
+    tab[max_index] = 0;
+    return max_wartosc;
+}
+
+int main() {
+    int tablica[] = {3, 7, 2, 9, 6};
+    int rozmiar = sizeof(tablica) / sizeof(tablica[0]);
+
+    int max_wartosc = znajdz_i_zamien_max(tablica, rozmiar);
+    printf("Największa wartość: %d\n", max_wartosc);
+
+    printf("Zmodyfikowana tablica: ");
+    for (int i = 0; i < rozmiar; i++) {
+        printf("%d ", tablica[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
+//zadanie 5
+#include <stdio.h>
+
+void posortuj(int* a, int* b, int* c) {
+    if (*a > *b) {
+        int temp = *a;
+        *a = *b;
+        *b = temp;
+    }
+    if (*b > *c) {
+        int temp = *b;
+        *b = *c;
+        *c = temp;
+    }
+    if (*a > *b) {
+        int temp = *a;
+        *a = *b;
+        *b = temp;
+    }
+}
+
+int main() {
+    int a = 9, b = 3, c = 7;
+    printf("Przed sortowaniem: a = %d, b = %d, c = %d\n", a, b, c);
+
+    posortuj(&a, &b, &c);
+
+    printf("Po sortowaniu: a = %d, b = %d, c = %d\n", a, b, c);
+
+    return 0;
+}
+//zadanie 6
+#include <stdio.h>
+
+void wypelnij_tablice(int* start, int* koniec) {
+    int rozmiar = koniec - start + 1;
+    for (int i = 0; i < rozmiar; i++) {
+        *(start + i) = i + 1;
+    }
+}
+
+int main() {
+    int tablica[10];
+    wypelnij_tablice(tablica, tablica + 9);
+
+    printf("Wypełniona tablica: ");
+    for (int i = 0; i < 10; i++) {
+        printf("%d ", tablica[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
