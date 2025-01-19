@@ -1,0 +1,73 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX_SIZE 20
+int n=0;
+void wypisz_tablice(int tablica[], int n, int kolumny) {
+    for (int i = 0; i < n; ++i) {
+        printf("%d ", tablica[i]);
+        if ((i + 1) % kolumny == 0) printf("\n");
+    }
+    if (n % kolumny != 0) printf("\n");
+}
+
+void dodaj_element(int tablica[], int *n, int element) {
+    if (*n < MAX_SIZE) {
+        tablica[(*n)++] = element;
+    } else {
+        printf("tablica jest pelna\n");
+    }
+}
+
+
+void usun_element(int tablica[], int *n, int indeks) {
+    if (indeks >= 0 && indeks < *n) {
+        for (int i = indeks; i < *n - 1; ++i) {
+            tablica[i] = tablica[i + 1];
+        }
+        (*n)--;
+    } else {
+        printf("zly indeks\n");
+    }}
+    int main() {
+    int tablica[MAX_SIZE] = {0};
+    int n = 0; 
+    char wybor;
+    int element,indeks,kolumny;
+    kolumny=5;
+    
+
+    
+    do {
+        printf("\nMenu:\n");
+        printf("D. Dodaj element\n");
+        printf("u. Usuń element\n");
+        printf("w. Wyświetl tablicę\n");
+        printf("e. Wyjście\n");
+        printf("Wybierz opcję: ");
+        scanf("%s", &wybor);
+
+        switch(wybor) {
+            case 'e':
+                printf("koniec programu\n");
+                break;
+            case 'D':
+            printf("podaj element do dodania: \n");
+                scanf("%d", &element);
+                dodaj_element(tablica,&n,element);
+                break; 
+            case 'u':
+                printf("podaj indeks do usuniecia: \n");
+                scanf("%d",&indeks);
+                usun_element(tablica,&n,indeks);
+                break;
+            case 'w':
+                printf("podaj liczbe kolumn do wyswietlenia : ");
+                scanf("%d",&kolumny);
+                wypisz_tablice(tablica,n,kolumny);
+
+                break;
+            case 'D
+                    
+        }
+    }while (wybor != 'e');
+    return 0;
